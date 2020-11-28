@@ -1,9 +1,9 @@
 use super::Sorter;
 
-pub struct Bubblesort;
+pub struct BubbleSort;
 
-impl Sorter for Bubblesort {
-    fn sort<T>(slice: &mut [T])
+impl Sorter for BubbleSort {
+    fn sort<T>(&self, slice: &mut [T])
     where
         T: Ord,
     {
@@ -25,6 +25,6 @@ impl Sorter for Bubblesort {
 fn bubblesort_test() {
     let mut unsorted = vec![3, 1, 2];
     let reference = vec![1, 2, 3];
-    super::sort::<_, Bubblesort>(&mut unsorted);
+    BubbleSort.sort(&mut unsorted);
     assert_eq!(unsorted, reference);
 }
