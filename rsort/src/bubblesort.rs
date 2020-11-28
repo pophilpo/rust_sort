@@ -23,7 +23,8 @@ impl Sorter for Bubblesort {
 #[test]
 
 fn bubblesort_test() {
-    let mut reference = vec![3, 1, 2];
-    super::sort::<_, Bubblesort>(&mut reference);
-    assert_eq!(reference, vec![1, 2, 3]);
+    let mut unsorted = vec![3, 1, 2];
+    let reference = vec![1, 2, 3];
+    super::sort::<_, Bubblesort>(&mut unsorted);
+    assert_eq!(unsorted, reference);
 }

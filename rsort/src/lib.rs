@@ -30,9 +30,10 @@ mod tests {
 
     #[test]
     fn std_works() {
-        let mut reference = vec![3, 1, 2];
-        sort::<_, StdSorter>(&mut reference);
+        let mut unsorted = vec![3, 1, 2];
+        let reference = vec![1, 2, 3];
+        sort::<_, StdSorter>(&mut unsorted);
 
-        assert_eq!(reference, &[1, 2, 3]);
+        assert_eq!(unsorted, reference);
     }
 }
