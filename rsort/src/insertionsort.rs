@@ -1,7 +1,7 @@
 use super::Sorter;
 
 pub struct InsertionSort {
-    smart: bool,
+    pub smart: bool,
 }
 
 //TODO: impl smarter sort with binary search

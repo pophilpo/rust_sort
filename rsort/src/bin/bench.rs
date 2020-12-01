@@ -32,15 +32,6 @@ impl<T: Ord> Ord for SortEvaluator<T> {
     }
 }
 
-impl<T> Bytify for SortEvaluator<T>
-where
-    T: Bytify,
-{
-    fn bytify(&self, level: usize) -> Option<usize> {
-        return self.t.bytify(level);
-    }
-}
-
 fn main() {
     let mut rand = rand::thread_rng();
     let counter = Rc::new(Cell::new(0));
@@ -60,27 +51,15 @@ fn main() {
 
             let took = bench(BubbleSort, &values, &counter);
             println!("{} {} {} {}", "bubble", n, took.0, took.1);
-            let took = bench(InsertionSort { smart: true }, &values, &counter);
-            println!("{} {} {} {}", "insertion-smart", n, took.0, took.1);
-            let took = bench(InsertionSort { smart: false }, &values, &counter);
-            println!("{} {} {} {}", "insertion-dumb", n, took.0, took.1);
-            let took = bench(SelectionSort, &values, &counter);
-            println!("{} {} {} {}", "selection", n, took.0, took.1);
             let took = bench(QuickSort, &values, &counter);
             println!("{} {} {} {}", "quick", n, took.0, took.1);
-            let took = bench(RadixSort, &values, &counter);
-            println!("{} {} {} {}", "radix", n, took.0, took.1);
-            let took = bench(HeapSort, &values, &counter);
-            println!("{} {} {} {}", "heap", n, took.0, took.1);
-            let took = bench(StdSorter, &values, &counter);
-            println!("{} {} {} {}", "stdstable", n, took.0, took.1);
-            let took = bench(StdUnstableSorter, &values, &counter);
-            println!("{} {} {} {}", "stdunstable", n, took.0, took.1);
+            let took = bench(InsertionSort { smart: false }, &values, &counter);
+            println!("{} {} {} {}", "insertion", n, took.0, took.1);
         }
     }
 }
 
-fn bench<T: Ord + Clone, S: Sorter<SortEvaluator<T>>>(
+fn bench<T: Ord + Clone, S: Sorter>(
     sorter: S,
     values: &[SortEvaluator<T>],
     counter: &Cell<usize>,

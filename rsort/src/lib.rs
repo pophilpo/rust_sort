@@ -12,7 +12,6 @@ mod selectionsort;
 pub use bubblesort::BubbleSort;
 pub use insertionsort::InsertionSort;
 pub use quicksort::QuickSort;
-pub use selectionsort::SelectionSort;
 
 #[cfg(test)]
 mod tests {
